@@ -1,0 +1,49 @@
+chatgpt:
+  api-key: "API_KEY"
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://i9c110.p.ssafy.io:3306/ssafy?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+
+    username: "username"
+    password: "password"
+  redis:
+    port: 6363
+    host: i9c110.p.ssafy.io
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: "E-mail"
+    password: "Password"
+    properties:
+      mail:
+        smtp:
+          auth: true
+        starttls:
+          enable: true
+          required: true
+        ssl:
+          enable: true
+
+
+server:
+  port: 8083
+
+jwt:
+  secret: "Secret"
+  expiration: 1800
+
+OPENVIDU_URL: https://i9c110.p.ssafy.io:4443
+OPENVIDU_SECRET: "Openvidu_Secret"

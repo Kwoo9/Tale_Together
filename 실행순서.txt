@@ -1,0 +1,7 @@
+도커설치
+도커로 오픈비두 설치
+/opt/openvidu 내부의 env파일 변경
+
+nginx dockerfile의 default_prod 를 default_dec로 바꿔 인증서를 받은 후 다시 변경
+
+팀시티 -> 스태틱 -> S -> 엔진엑스 순서대로 도커 컴포즈를 실행한다.

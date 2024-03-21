@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  redis:
+    container_name: redis
+    image: redis
+    networks:
+      - app-network
+  db:
+    image: mysql
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_SECRET}
+      MYSQL_DATABASE: ssafy
+      MYSQL_ROOT_HOST: '%'
+      TZ: 'Asia/Seoul'
+    networks:
+      - app-network
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - /var/www/certbot/:/var/www/certbot/
+      - /etc/letsencrypt/:/etc/letsencrypt/
+    entrypoint: "/bin/sh -c 'trap exit TERM; certbot certonly --email alsgur97@naver.com --agree-tos --webroot -w /var/www/certbot -d i9c110.p.ssafy.io --non-interactive; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+volumes:
+  db-data:
+
+networks:
+  app-network:
+    external:
+      name: taletogether
